@@ -1,0 +1,47 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{type}} Tasks</ion-title>
+    <ion-buttons start margin-right>
+      <button ion-button icon-only color="primary" (click)="addNewTask()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+    <button ion-button menuToggle end>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let task of tasks">
+      <button ion-item
+        (click)="onViewTask(task)">
+        <ion-row>
+          <ion-col text-left>
+            <h2>{{ task.title | uppercase}}</h2>
+          </ion-col>
+          <ion-col text-right>
+            <h3>{{ task.minutes }}</h3>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <p>
+              {{ task.description }}
+            </p>
+          </ion-col>
+        </ion-row>
+      </button> 
+      <ion-item-options>
+        <button ion-button color="danger"
+          (click)="onRemove(task)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

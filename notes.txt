@@ -1,0 +1,9 @@
+- sudo npm install -g cordova ionic
+- ionic start {name}
+- ionic serve -p $PORT --nolivereload
+
+- ionic generate page {name}
+
+
+- cordova platform add {platform}
+- ionic build {platform}

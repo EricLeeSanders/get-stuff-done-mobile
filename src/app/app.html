@@ -1,0 +1,21 @@
+<ion-menu [content]="nav">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <button ion-item (click)="onLoad(tabsPage)">
+                <ion-icon name="task" item-left></ion-icon>
+                Tasks
+            </button>
+            <button ion-item (click)="onLoad(loginPage)">
+                <ion-icon name="login" item-left></ion-icon>
+                Login
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="tabsPage" #nav></ion-nav>
