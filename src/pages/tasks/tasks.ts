@@ -4,6 +4,7 @@ import { ModalController, NavParams, MenuController, NavController } from 'ionic
 
 import { Task } from "../../models/task";
 import { TaskService } from "../../services/tasks.service";
+import { TaskMoveHandler } from "../../services/task-move.handler";
 import { TaskPage } from "../task/task";
 import { EditTaskPage } from "../edit-task/edit-task";
 
@@ -22,7 +23,8 @@ export class TasksPage implements OnInit {
   private taskService: TaskService;
   private type: string;
 
-  constructor (private modalCtrl: ModalController,
+  constructor (private taskMoveHandler: TaskMoveHandler,
+               private modalCtrl: ModalController,
                private menuCtrl: MenuController,
                private navCtrl: NavController,
                private navParams: NavParams){}
@@ -59,7 +61,8 @@ export class TasksPage implements OnInit {
   }
   
   onMove(task: Task, dest: string){
-    
+    this.taskMoveHandler.moveTask(task, this.taskService, dest);
+    this.tasks = this.taskService.getTasks();
   }
   
   addNewTask(){

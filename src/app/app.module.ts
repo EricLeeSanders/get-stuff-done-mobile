@@ -11,6 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TodayTaskService } from '../services/today.tasks.service';
 import { WeekTaskService } from '../services/week.tasks.service';
 import { MonthTaskService } from '../services/month.tasks.service';
+import { TaskMoveHandler } from '../services/task-move.handler';
 
 @NgModule({
   // Declares components, directives, and pipes that are used in this module.
@@ -49,7 +50,8 @@ import { MonthTaskService } from '../services/month.tasks.service';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TodayTaskService,
     WeekTaskService,
-    MonthTaskService
+    MonthTaskService,
+    TaskMoveHandler
   ]
 })
 export class AppModule {}

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Task } from "../models/task";
 import { TaskService } from "./tasks.service"
 
+@Injectable()
 export class WeekTaskService extends TaskService{
 
     constructor(){
