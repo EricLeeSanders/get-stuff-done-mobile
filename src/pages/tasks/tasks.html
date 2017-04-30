@@ -35,7 +35,25 @@
           </ion-col>
         </ion-row>
       </button> 
-      <ion-item-options>
+       I see this <br/>is a long <br/> sentence here.
+      <ion-item-options side="left">
+        <button ion-button color="secondary"
+          *ngIf="type == 'Today' || type == 'Month'"
+          (click)="onMove(task,'Week')">
+          Move to<br/>Week
+        </button>
+        <button ion-button color="secondary"
+          *ngIf="type == 'Week'"
+          (click)="onMove(task,'Month')">
+          Move to<br/>Month
+        </button>
+        <button ion-button color="primary"
+          *ngIf="type == 'Week'"
+          (click)="onMove(task,'Today')">
+          Move to<br/>Today
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
         <button ion-button color="danger"
           (click)="onRemove(task)">
           <ion-icon name="trash"></ion-icon>

@@ -15,12 +15,15 @@ export class EditTaskPage implements OnInit {
   mode = 'New'; // default to new
   currentTask: Task;
   taskForm: FormGroup // All forms for the reactive approach should be FormGroup
+  taskService: TaskService;
   
   constructor( private navParams: NavParams,
-               private navCtrl: NavController,
-               private taskService: TaskService){}
+               private navCtrl: NavController){}
 
   ngOnInit(){
+    console.log(this.navParams);
+    console.log(this.navParams.get('mode'));
+    this.taskService = this.navParams.get('taskService');
     this.mode = this.navParams.get('mode');
     if (this.mode == 'Edit') {
       this.currentTask = this.navParams.get('task');
@@ -31,7 +34,7 @@ export class EditTaskPage implements OnInit {
   onSubmit(){
     const value = this.taskForm.value;
     if (this.mode == 'New') {
-      let newTask = new Task(1, value.title, value.minutes, value.description); 
+      let newTask = new Task(value.title, value.minutes, value.description); 
       this.taskService.addTask(newTask);
     } else if (this.mode == 'Edit') {
       this.taskService.editTask(this.currentTask, value.title, value.minutes, value.description);

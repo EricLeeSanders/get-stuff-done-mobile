@@ -1,20 +1,9 @@
-import { Injectable } from '@angular/core';
 import { Task } from "../models/task";
 
-@Injectable()
-export class TaskService {
+export abstract class TaskService {
     private tasks: Task[] = [];
 
-    constructor(){
-        // Create some fake tasks to begin with
-        this.addTask(new Task(1, "Program", 120, "Program for 2 hours"));
-        this.addTask(new Task(2, "Laundry", 60, "Do laundry some time soon"));
-        this.addTask(new Task(3, "Homework", 60, "Do all of my homework"));
-        this.addTask(new Task(4, "Read", 30, "Read a book from the libary"));
-        this.addTask(new Task(5, "Doctor", 5, "Make Dr. appointment"));
 
-    }
-    
     addTask(task: Task) {
         this.tasks.push(task);
     }
@@ -35,8 +24,6 @@ export class TaskService {
         task.title = title;
         task.minutes = minutes;
         task.description = description;
-
-        
     }
     
     getTasks() {

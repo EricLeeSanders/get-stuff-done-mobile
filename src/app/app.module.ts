@@ -3,15 +3,14 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { TaskPage } from '../pages/task/task';
 import { TasksPage } from '../pages/tasks/tasks';
-import { TodayPage } from '../pages/today/today';
-import { WeekPage } from '../pages/week/week';
-import { MonthPage } from '../pages/month/month';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { EditTaskPage } from '../pages/edit-task/edit-task';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { TaskService } from '../services/tasks.service';
+import { TodayTaskService } from '../services/today.tasks.service';
+import { WeekTaskService } from '../services/week.tasks.service';
+import { MonthTaskService } from '../services/month.tasks.service';
 
 @NgModule({
   // Declares components, directives, and pipes that are used in this module.
@@ -19,9 +18,6 @@ import { TaskService } from '../services/tasks.service';
     MyApp,
     TaskPage,
     TasksPage,
-    TodayPage,
-    WeekPage,
-    MonthPage,
     TabsPage,
     LoginPage,
     EditTaskPage
@@ -41,9 +37,6 @@ import { TaskService } from '../services/tasks.service';
     MyApp,
     TaskPage,
     TasksPage,
-    TodayPage,
-    WeekPage,
-    MonthPage,
     TabsPage,
     LoginPage,
     EditTaskPage
@@ -54,7 +47,9 @@ import { TaskService } from '../services/tasks.service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    TaskService
+    TodayTaskService,
+    WeekTaskService,
+    MonthTaskService
   ]
 })
 export class AppModule {}

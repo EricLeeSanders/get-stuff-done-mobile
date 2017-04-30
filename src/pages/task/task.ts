@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { ViewController, NavParams, NavController } from 'ionic-angular';
 import { EditTaskPage } from '../edit-task/edit-task';
 import { Task } from "../../models/task";
+import { TaskService } from "../../services/tasks.service";
 
 /*
   Generated class for the Task page.
@@ -20,6 +21,7 @@ export class TaskPage {
   // description: string;
   // minutes: number;
   private task: Task;
+  private taskService: TaskService;
   
   constructor (private viewCtrl: ViewController,
                private navParams: NavParams,
@@ -30,6 +32,7 @@ export class TaskPage {
   // this.description = this.navParams.get('description');
   // this.minutes = this.navParams.get('minutes');
     this.task = this.navParams.get('task');
+    this.taskService = this.navParams.get('taskService');
  }
 
   // default to false. Supplying an argument will override
@@ -38,7 +41,7 @@ export class TaskPage {
   }
   
   onEdit(){
-    this.navCtrl.push(EditTaskPage, {mode: 'Edit', task: this.task });
+    this.navCtrl.push(EditTaskPage, {taskService: this.taskService, mode: 'Edit', task: this.task });
     //this.viewCtrl.dismiss();
   }
   

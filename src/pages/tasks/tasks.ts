@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ModalController, MenuController, NavController } from 'ionic-angular';
+import { ModalController, NavParams, MenuController, NavController } from 'ionic-angular';
 
 import { Task } from "../../models/task";
 import { TaskService } from "../../services/tasks.service";
@@ -19,16 +19,19 @@ import { EditTaskPage } from "../edit-task/edit-task";
 })
 export class TasksPage implements OnInit {
   private tasks: Task[];
-  
-  constructor (protected taskService: TaskService,
-               protected modalCtrl: ModalController,
-               protected menuCtrl: MenuController,
-               protected navCtrl: NavController,
-               protected type: String){}
+  private taskService: TaskService;
+  private type: string;
+
+  constructor (private modalCtrl: ModalController,
+               private menuCtrl: MenuController,
+               private navCtrl: NavController,
+               private navParams: NavParams){}
   
     
   ngOnInit(){
-    
+    this.taskService = this.navParams.get('taskService');
+    this.type = this.navParams.get('type');
+
   }
   
   // Executed write before page is displayed
@@ -38,22 +41,29 @@ export class TasksPage implements OnInit {
   }
   
   onViewTask(task: Task){
-    const modal = this.modalCtrl.create(TaskPage, {task: task});
+    const modal = this.modalCtrl.create(TaskPage, {taskService: this.taskService, task: task});
     modal.present();
     modal.onDidDismiss((remove: boolean) => {
       if(remove){
         this.onRemove(task);
+      } else {
+        this.tasks = this.taskService.getTasks();
       }
-      this.tasks = this.taskService.getTasks();
+      
     });
   }
   
   onRemove(task: Task){
     this.taskService.removeTask(task);
+    this.tasks = this.taskService.getTasks();
+  }
+  
+  onMove(task: Task, dest: string){
+    
   }
   
   addNewTask(){
-    this.navCtrl.push(EditTaskPage, {mode: 'New'});
+    this.navCtrl.push(EditTaskPage, {taskService: this.taskService, mode: 'New'});
   }
 }
 

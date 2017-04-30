@@ -1,22 +1,24 @@
 import { Component } from '@angular/core';
 
-import { TodayPage } from '../today/today';
-import { WeekPage } from '../week/week';
-import { MonthPage } from '../month/month';
+import { TasksPage } from '../tasks/tasks';
+import { TodayTaskService } from "../../services/today.tasks.service";
+import { WeekTaskService } from "../../services/week.tasks.service";
+import { MonthTaskService } from "../../services/month.tasks.service";
 
 @Component({
     selector: 'page-tabs',
     template: `
       <ion-tabs selectedIndex="1">
-        <ion-tab [root]="todayPage" tabTitle="Today"></ion-tab>
-        <ion-tab [root]="weekPage" tabTitle="Week"></ion-tab>
-        <ion-tab [root]="monthPage" tabTitle="Month"></ion-tab>
+        <ion-tab [root]="tasksPage" [rootParams]="{taskService:todayTaskService, type: 'Today'}" tabTitle="Today"></ion-tab>
+        <ion-tab [root]="tasksPage" [rootParams]="{taskService:weekTaskService, type: 'Week'}" tabTitle="Week"></ion-tab>
+        <ion-tab [root]="tasksPage" [rootParams]="{taskService:monthTaskService, type: 'Month'}" tabTitle="Month"></ion-tab>
       </ion-tabs>
     `
     
 })
 export class TabsPage {
-    todayPage = TodayPage;
-    weekPage = WeekPage;
-    monthPage = MonthPage;
+    tasksPage = TasksPage;
+    constructor(private todayTaskService: TodayTaskService,
+                private weekTaskService: WeekTaskService,
+                private monthTaskService: MonthTaskService){}
 }
