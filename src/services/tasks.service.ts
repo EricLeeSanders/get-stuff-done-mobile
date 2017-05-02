@@ -1,7 +1,7 @@
 import { Task } from "../models/task";
 
 export abstract class TaskService {
-    private tasks: Task[] = [];
+    protected tasks: Task[] = [];
 
 
     addTask(task: Task) {
@@ -30,4 +30,6 @@ export abstract class TaskService {
         // return copy
         return this.tasks.slice();
     }
+    
+    abstract fetchTasks();
 }

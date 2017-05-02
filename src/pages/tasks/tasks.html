@@ -42,15 +42,15 @@
           (click)="onMove(task,'Week')">
           Move to<br/>Week
         </button>
-        <button ion-button color="secondary"
-          *ngIf="type == 'Week'"
-          (click)="onMove(task,'Month')">
-          Move to<br/>Month
-        </button>
         <button ion-button color="primary"
           *ngIf="type == 'Week'"
           (click)="onMove(task,'Today')">
           Move to<br/>Today
+        </button>
+        <button ion-button color="secondary"
+          *ngIf="type == 'Week'"
+          (click)="onMove(task,'Month')">
+          Move to<br/>Month
         </button>
       </ion-item-options>
       <ion-item-options side="right">

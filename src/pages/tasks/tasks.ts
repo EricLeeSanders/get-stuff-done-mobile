@@ -31,8 +31,13 @@ export class TasksPage implements OnInit {
   
     
   ngOnInit(){
+    console.log('tasks oninit');
     this.taskService = this.navParams.get('taskService');
     this.type = this.navParams.get('type');
+    this.taskService.fetchTasks()
+      .then(
+          (tasks: Task[]) => this.tasks = tasks
+        );
 
   }
   

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { TasksPage } from "../tasks/tasks";
 
 /*
   Generated class for the Login page.
@@ -13,10 +14,22 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(private navCtrl: NavController,
+              private navParams: NavParams,
+              private toastCtrl: ToastController) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-
+  
+  onSignIn(){
+    let toast = this.toastCtrl.create({
+      message: 'Sign in not implemented',
+      duration: 3000,
+      position: 'top'
+    });
+    
+    
+    toast.present();
+  }
 }

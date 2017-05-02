@@ -1,4 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { IonicStorageModule } from '@ionic/storage';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { TaskPage } from '../pages/task/task';
@@ -26,7 +27,8 @@ import { TaskMoveHandler } from '../services/task-move.handler';
   // makes the exported declarations of other modules available in the current module
   imports: [
     // Configures ionic to wrap around our app
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   // Tells the offline template compiler to compile
